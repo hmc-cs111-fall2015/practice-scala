@@ -17,3 +17,6 @@ labs/.settings
 solutions/.settings
 .cache
 TODO.md
+.settings
+labs/.cache-main
+labs/.cache-tests
