@@ -1,6 +1,6 @@
-# Assignment 1: Practice Scala
-###### _Submission deadline: Monday, Sept. 15 at 11:59pm_
-###### _Critique deadline: Wednesday, Sept. 17 at noon_
+# Practice Scala
+###### _Submission deadline: Sunday, Sept. 20 at 11:59pm_
+###### _Critique deadline: Tuesday, Sept. 22 at 11:59pm_
 
 The assignment is a modified version of the
 [Scala Labs](http://scala-labs.github.io/) project.<sup>1</sup> The goal of this
@@ -23,16 +23,8 @@ start coding.**
 Here's what to do:
 
 - Get things set up
-  - [ ] Make your team on GitHub.
-     1. Go to the [team sign-up page](https://github.com/hmc-cs111-fall2014/practice-scala/wiki/Team-sign-ups)
-     2. Add your and your partner's names to the table. Erase your names from below the table.
-  - [ ] Get your team's copy of the assignment.
-     1. *One* of the partners should fork this assignment. This will be the fork to which you both contribute and the fork from which you issue the pull request. (But, of course, you may each have your own clones.)
-     2. The partner who forked should make sure that the other partner has access to the fork. 
-        1. On the fork's page, click  Settings (on the right-hand side).
-        2. Click on Collaborators (on the left-hand side).
-        3. Add your partner's GitHub ID as a collaborator.
-     3. Both partners should be able to push to and pull from the fork.
+  - [ ] Review the [Assignment workflow](https://github.com/hmc-cs111-fall2015/hmc-cs111-fall2015.github.io/wiki/Assignment-HOWTO#connect-local), and follow it to get the materials for this lab.
+  - [ ] Read [Installing Scala](https://github.com/hmc-cs111-fall2015/hmc-cs111-fall2015.github.io/wiki/Installing-Scala), if you want to install Scala on your own machine.
 
 - Work on the assignment
   - [ ] Read the lab instructions, hints, and tips, below.
@@ -51,7 +43,7 @@ Here's what to do:
 
 - Submit the assignment 
   - [ ] Submit your work (by issuing a pull request).
-  - [ ] Review and comment on other teams' code. 
+  - [ ] Review and comment on other people's code. 
 
 ## Lab instructions, hints, and tips
 
@@ -128,8 +120,9 @@ Scala. Some possible topics include:
   you think the designers made that / those choice(s)?
   - What Scala features would you like to learn more about?
 
-## Peer-review other teams' work
-Comment on at least two other teams' work. You should look through their
+## Peer-review other people's work
+You'll comment on at least two other people's work. Look at the [peer review table]() 
+to see whom you should reivew. You should look through their
 solutions to each of the exercises, as well as their `scala-thoughts.md` file.
 You don't need to comment on everything, but find some interesting parts of
 their work to evaluate. Some questions you might consider / answer when 
