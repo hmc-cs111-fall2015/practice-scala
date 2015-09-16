@@ -2,7 +2,7 @@ name := "Practice Scala -- Sample Solution"
 
 version := "2.0"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.7"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
