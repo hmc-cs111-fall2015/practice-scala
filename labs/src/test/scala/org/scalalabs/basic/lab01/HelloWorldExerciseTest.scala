@@ -44,7 +44,7 @@ class HelloWorldExerciseTest extends Specification {
   * such a way that the tests in this suite all succeed.
   *
   * Hint:
-  * - A Class may have a companion Ojbect by the same name, defined
+  * - A Class may have a companion Object by the same name, defined
   *   in the same source file
   * - An Object can be constructed using an apply method
   */
@@ -60,13 +60,13 @@ class HelloWorldExerciseTest extends Specification {
   /*   (comment out these tests, if you don't do the exercise)    */
 
   /*
-  * Scala inheritence with Traits
+  * Scala inheritance with Traits
   *
   * Your job is to implement the objects and classes in
   * such a way that the tests in this suite all succeed.
   *
   * Hint:
-  * - combine the methods in HelloTrait and Worldtrait to
+  * - combine the methods in HelloTrait and WorldTrait to
   *   create a new message
   */
   "Scala Traits" should {
