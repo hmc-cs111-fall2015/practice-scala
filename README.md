@@ -102,6 +102,7 @@ The following readings could be helpful for this lab:
 
 -   *Scala for the Impatient* Sections 14.1--14.5 (pattern matching)
 -   [The Neophyte's Guide to Scala](http://danielwestheide.com/blog/2012/12/19/the-neophytes-guide-to-scala-part-5-the-option-type.html) (`Option`s)
+-   [Idiomatic Options](http://blog.originate.com/blog/2014/06/15/idiomatic-scala-your-options-do-not-match/)
 
 Hints and tips:
 
