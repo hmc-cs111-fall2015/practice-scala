@@ -10,17 +10,13 @@ object ListManipulationExercise02 {
    * Find the maximum element in a list, e.g. maxElementInList(List(1,9,3,5)) == 9
    * As usual, various ways exist: pattern matching, folding, ...
    */
-  def maxElementInList(l: List[Int]): Int = {
-    error("fix me")
-  }
+  def maxElementInList(l: List[Int]): Int = l.fold(Int.MinValue)(math.min)
 
   /**
    * Calculate the sum of the equally position elements
    * of the two list
    */
-  def sumOfTwo(l1: List[Int], l2: List[Int]): List[Int] = {
-    error("fix me")
-  }
+  def sumOfTwo(l1: List[Int], l2: List[Int]): List[Int] = l1.zip(l2).map( (x: Int, y: Int) => x + y)
 
   /**
    *  For this exercise preferably make use of the sumOfTwo
