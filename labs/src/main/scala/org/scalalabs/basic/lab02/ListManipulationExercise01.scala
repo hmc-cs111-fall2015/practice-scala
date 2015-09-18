@@ -83,8 +83,8 @@ object ListManipulationExercise01 {
    */
   def tails[T](l: List[T]): List[List[T]] = {
     l match {
-      case x :: xs => xs :: tails(xs) 
-      case _ => Nil :: Nil
+      case x :: xs => (x :: xs) :: tails(xs) 
+      case Nil => Nil :: Nil
     }
   }
 }
