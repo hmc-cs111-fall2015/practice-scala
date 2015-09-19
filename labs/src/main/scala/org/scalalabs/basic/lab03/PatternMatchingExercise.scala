@@ -23,8 +23,21 @@ object PatternMatchingExercise {
    *************************************************************************/
 
   def describeLanguage(s: String): String = {
-    error("fix me")
+    s match {
+      case "Java" | "Smalltalk" => "OOP"
+      case "Clojure" | "Haskell" => "Functional"
+      case "Scala" => "Hybrid"
+      case "C" => "Procedural"
+      case _ => "Unknown"
+    }
   }
+//      "OOP" === describeLanguage("Java")
+//      "OOP" === describeLanguage("Smalltalk")
+//      "Functional" === describeLanguage("Clojure")
+//      "Functional" === describeLanguage("Haskell")
+//      "Hybrid" === describeLanguage("Scala")
+//      "Procedural" === describeLanguage("C")
+//      "Unknown" === describeLanguage("Oz")
 
   /**
    * Here's how matches should work. If `in` is:
@@ -47,7 +60,15 @@ object PatternMatchingExercise {
    *    - anything else, the function result is "Some Scala class"
    */
   def matchOnInputType(in: Any): String = {
-    error("fix me")
+    in match {
+      case s: String => s"A string with length ${s.length()}"
+      case i: Int if i > 0 => "A positive integer"
+      case p: Person => s"A person with name: ${p.name}"
+      case seq: Seq[_] if seq.length > 10 => "Seq with more than 10 elements"
+      case seq: Seq[_] if seq.length >= 3 => s"first: ${seq(0)}, second: ${seq(1)}, rest: ${seq.drop(2)}"
+      case null => "A null value"
+      case _ => "Some Scala class"
+    }
   }
 
   /**
@@ -55,7 +76,10 @@ object PatternMatchingExercise {
    *    otherwise return `None`
    */
   def older(p: Person): Option[String] = {
-    error("fix me")
+    p.age match {
+      case x if x <= 30 => None
+      case _ => Option(p.name)
+    }
   }
 }
 

@@ -4,6 +4,8 @@ package org.scalalabs.basic.lab02
  * higher order collection methods can be rehearsed.
  */
 import sys._
+import scala.collection.immutable.HashMap
+import Function.tupled
 
 object CollectionExercise01 {
 
@@ -33,14 +35,19 @@ object CollectionExercise01 {
    *
    */
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+    val google  = "ejp mysljylc kd kxveddknmc re jsicpdrysi rbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcd de kr kd eoya kw aej tysr re ujdr lkgc jv y e q"
+    val english = "our language is impossible to understand there are twenty six factorial possibilities so it is okay if you want to just give up a o z"
+    val map = google.zip(english).toMap
+    lines.map(_.map(map.get(_).getOrElse('?')))
   }
 }
 /*========================================================== */
 
 object CollectionExercise02 {
 
-  class Person(val age: Int, val name: String)
+  class Person(val age: Int, val name: String) {
+    override def toString() = s"<${this.name}, ${this.age}>"
+  }
 
   /**
    * Take a look at the java class: {@link ImperativeSample}. The
@@ -50,7 +57,7 @@ object CollectionExercise02 {
    * using a functional approach.
    */
   def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
+    persons.filter(_.age >= 18).groupBy(x => (x.age / 10) * 10).mapValues(_.sortBy(_.name))
   }
 }
 
@@ -65,7 +72,7 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
+    seq.drop(1).zip(seq).count(tupled(_<=_)) == 0
 
 }
 /*========================================================== */
@@ -76,6 +83,6 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    lines.map(_.split(" ")).flatten.map(_.length()).max
   }
 }
