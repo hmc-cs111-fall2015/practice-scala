@@ -124,7 +124,7 @@ Scala. Some possible topics include:
 ## Peer-review other people's work
 You'll comment on at least two other people's work. Look at the 
 [peer review table](https://github.com/hmc-cs111-fall2015/practice-scala/wiki/Peer-review) 
-to see whom you should reivew. You should look through their
+to see whom you should review. You should look through their
 solutions to each of the exercises, as well as their `scala-thoughts.md` file.
 You don't need to comment on everything, but find some interesting parts of
 their work to evaluate. Some questions you might consider / answer when 
