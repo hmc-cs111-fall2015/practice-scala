@@ -22,8 +22,14 @@ object PatternMatchingExercise {
    * For expected solution see unittest @PatternMatchingExerciseTest
    *************************************************************************/
 
-  def describeLanguage(s: String): String = {
-    error("fix me")
+  def describeLanguage(s: String): String = s match {
+    case "Java" => "OOP"
+    case "Smalltalk" => "OOP"
+    case "Clojure" => "Functional"
+    case "Haskell" => "Functional"
+    case "C" => "Procedural"
+    case "Scala" => "Hybrid"
+    case _ => "Unknown"
   }
 
   /**
@@ -46,8 +52,13 @@ object PatternMatchingExercise {
    *        
    *    - anything else, the function result is "Some Scala class"
    */
-  def matchOnInputType(in: Any): String = {
-    error("fix me")
+  def matchOnInputType(in: Any): String = 
+    in match{
+    case in: String => "A string with length " + in.length()
+    case in: Int => if (in>0) "A positive integer" else "Some Scala class"
+    case in: Person => "A person with name: " + in.name
+    case in: Seq[Any] => if (in.length>10) "Seq with more than 10 elements" else if (in.length >= 3) "first: " + in(0) + ", second: " + in(1) + ", rest: " + (in.tail).tail else "Some Scala class"
+    case _ => if (Option(in) == None) "A null value" else "Some Scala class"
   }
 
   /**
@@ -55,7 +66,7 @@ object PatternMatchingExercise {
    *    otherwise return `None`
    */
   def older(p: Person): Option[String] = {
-    error("fix me")
+    if (p.age > 30) return Option(p.name) else return Option(null)
   }
 }
 

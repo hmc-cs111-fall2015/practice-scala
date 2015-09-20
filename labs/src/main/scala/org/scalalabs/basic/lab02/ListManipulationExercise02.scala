@@ -11,7 +11,7 @@ object ListManipulationExercise02 {
    * As usual, various ways exist: pattern matching, folding, ...
    */
   def maxElementInList(l: List[Int]): Int = {
-    error("fix me")
+    return l.foldLeft(0)((m: Int, n:Int) => if (n > m) n else m)
   }
 
   /**
@@ -19,7 +19,12 @@ object ListManipulationExercise02 {
    * of the two list
    */
   def sumOfTwo(l1: List[Int], l2: List[Int]): List[Int] = {
-    error("fix me")
+    if (l1.length == 0)
+      return l2
+    if (l2.length == 0)
+      return l1
+    else
+      return (l1.zip(l2)) map ({ case (i:Int, j:Int) => i+j})
   }
 
   /**
@@ -27,7 +32,12 @@ object ListManipulationExercise02 {
    * method above
    */
   def sumOfMany(l: List[Int]*): List[Int] = {
-    error("fix me")
+    if (l.length == 0)
+      return List()
+    else if (l.length == 1)
+      return l.head
+    else 
+      return l.reduceLeft((l1: List[Int], l2: List[Int]) => sumOfTwo(l1, l2))
   }
 
   case class Person(age: Int, firstName: String, lastName: String)
@@ -39,29 +49,8 @@ object ListManipulationExercise02 {
    * in a one-liner.
    */
   def separateTheYoungFromTheOld(persons: List[Person]): List[List[String]] = {
-    var youngins: ListBuffer[Person] = new ListBuffer[Person]()
-    var elders: ListBuffer[Person] = new ListBuffer[Person]()
-    var validYoungNames: ListBuffer[String] = new ListBuffer[String]()
-    var validOldNames: ListBuffer[String] = new ListBuffer[String]()
-
-    for (person <- persons) {
-        if (person.age < 18) {
-          youngins += person
-        } else {
-          elders += person
-        }
-    }
-
-    var sortedYoung = youngins.toList.sortBy(_.age)
-    var sortedOld = elders.toList.sortBy(_.age)
-
-    for (young <- sortedYoung) {
-      validYoungNames += young.firstName
-    }
-    for (old <- sortedOld) {
-      validOldNames += old.firstName
-    }
-    List(validYoungNames.toList, validOldNames.toList)
+    List((persons.filter(_.age<18).sortBy(_.age)).map((person: Person) => person.firstName), 
+        (persons.filter(_.age>=18).sortBy(_.age)).map((person: Person) => person.firstName))
   }
 
 }

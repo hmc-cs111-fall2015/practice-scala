@@ -32,10 +32,46 @@ object CollectionExercise01 {
    * Case 3: so it is okay if you want to just give up
    *
    */
-  def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+  
+  // Not worth it
+  
+    def googleCodeJamGooglerese(lines: String*): Seq[String] = {
+    if (lines.length == 0) return Seq("")
+    var letter: Char = lines.head(0)
+    var outLetter: Char = ' ' 
+//    letter match {
+//      case 'a' => outLetter = 'y'
+//      case 'b' => outLetter = ' '
+//      case 'c' => outLetter = 'e'
+//      case 'd' => outLetter = 's'
+//      case 'e' => outLetter = 'o'
+//      case 'f' => outLetter = 'c'
+//      case 'g' => outLetter = 'v'
+//      case 'h' => outLetter = ' '
+//      case 'i' => outLetter = ' '
+//      case 'j' => outLetter = 'u'
+//      case 'k' => outLetter = 'i'
+//      case 'l' => outLetter = 'g'
+//      case 'm' => outLetter = 'l'
+//      case 'n' => outLetter = 'b'
+//      case 'o' => outLetter = 'k'
+//      case 'p' => outLetter = 'r'
+//      case 'q' => outLetter = 'z'
+//      case 'r' => outLetter = 't'
+//      case 's' => outLetter = 'n'
+//      case 't' => outLetter = 'w'
+//      case 'u' => outLetter = ' '
+//      case 'v' => outLetter = 'p'
+//      case 'w' => outLetter = 'f'
+//      case 'x' => outLetter = 'm'
+//      case 'y' => outLetter = 'a'
+//      case 'z' => outLetter = ' '
+//      case ' ' => outLetter = ' '
+//    }
+    return Seq(outLetter.toString) ++ googleCodeJamGooglerese(lines.drop(1).toString)
   }
 }
+
 /*========================================================== */
 
 object CollectionExercise02 {
@@ -50,8 +86,25 @@ object CollectionExercise02 {
    * using a functional approach.
    */
   def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
+    var adults: Seq[Person] = (persons.filter((p: Person) => p.age > 17))
+    var sortedAdults: Seq[Person] = adults.sortWith(_.name < _.name)
+    var groupedAdults: List[Seq[Person]] = groupAdults(sortedAdults)
+    var ageGroups: List[Int] = groupAges(groupedAdults)
+    var groupings: List[(Int, Seq[Person])] = ageGroups.zip(groupedAdults)
+    var map = Map(groupings map { pair => pair._1 -> pair._2 }: _*)
+    return map
   }
+  
+  def groupAdults(persons: Seq[Person]): List[Seq[Person]] = {
+    if (persons.length == 0) return List()
+    else return List(persons.filter((p: Person) => (p.age) / 10 * 10 == ((persons.head).age) / 10 * 10)) ::: groupAdults(persons.filter ((p: Person) => (p.age) / 10 * 10 != ((persons.head).age) / 10 * 10))
+  }
+  
+  def groupAges(personList: List[Seq[Person]]): List[Int] = {
+    if (personList.length == 0) return List()
+    else return List(((personList.head).head).age / 10 * 10) ::: groupAges(personList.tail)
+  }
+  
 }
 
 /*========================================================== */
@@ -65,8 +118,12 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
-
+    if (seq.length == 0)
+      return false
+    else if (seq.length == 1)
+      return true
+    else
+      return (seq(0) < seq(1)) && checkValuesIncrease(seq.tail)
 }
 /*========================================================== */
 
@@ -76,6 +133,19 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    if (lines.length == 0)
+      return 0
+    var longestWordList: List[Int] = lines.map(sizeOfLongestWord).toList
+    return maxOfList(longestWordList)
+  }
+  
+  def sizeOfLongestWord(sentence: String): Int = {
+    var wordList: List[String] = sentence.split(" ").toList
+    var wordSizeList: List[Int] = (wordList.map(_.length()))
+    return maxOfList(wordSizeList)
+  }
+  
+  def maxOfList(list: List[Int]): Int = {
+    list.foldLeft(0)((m: Int, n: Int) => if(n>m) (n) else (m))
   }
 }
