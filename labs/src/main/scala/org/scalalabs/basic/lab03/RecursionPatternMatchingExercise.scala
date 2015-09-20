@@ -29,7 +29,11 @@ object RecursionPatternMatchingExercise {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease(seq: Seq[Int]): Boolean = {
-    error("fix me")
+    seq match {
+      case Nil | Seq(_) => true
+      case a :: b :: _ if a >= b => false
+      case _ :: tail => checkValuesIncrease(tail)
+    }
   }
   
   /**
@@ -37,7 +41,10 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1), List(2), List(3), List(1,1)
    */
   def groupConsecutive[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    in match {
+      case Nil => Nil
+      case a :: _ => (in takeWhile (_ == a)) :: groupConsecutive(in dropWhile (_ == a))
+    }
   }
 
   /**
@@ -45,7 +52,10 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1,1,1), List(2), List(3)
    */
   def groupEquals[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    in match {
+      case Nil => Nil
+      case a :: _ => (in filter (_ == a)) :: groupEquals(in filterNot (_ == a))
+    }
   }
 
   /**
@@ -53,7 +63,10 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,2,3)
    */
   def compress[T](in: List[T]): List[T] = {
-    error("fix me")
+    in match {
+      case Nil => Nil
+      case a :: _ => a :: compress(in filter (_ != a))
+    }
   }
   
   /**
@@ -61,7 +74,10 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List((4,1),(1,2),(1,3))
    */
   def amountEqualMembers[T](in: List[T]): List[(Int, T)] = {
-    error("fix me")
+    in match {
+      case Nil => Nil
+      case a :: _ => (in count (_ == a), a) :: amountEqualMembers(in filterNot (_ == a))
+    }
   }
   
   /**
@@ -69,7 +85,10 @@ object RecursionPatternMatchingExercise {
    * List(List(1,2,3), List('A, 'B, 'C), List('a, 'b, 'c)) -> List(List(1, 'A, 'a), List(2, 'B, 'b), List(3, 'C, 'c))
    */
   def zipMultiple(in: List[List[_]]): List[List[_]] = {
-    error("fix me")
+    in match {
+      case Nil :: _ => Nil
+      case _ => (in map (_.head)) :: zipMultiple(in map (_.tail))
+    }
   }
 
   /**
@@ -77,7 +96,10 @@ object RecursionPatternMatchingExercise {
    * List(List(1), List('A, 'B, 'C), List('a, 'b)) -> List(List(1, 'A, 'a))
    */
   def zipMultipleWithDifferentSize(in: List[List[_]]): List[List[_]] = {
-    error("fix me")
+    in find (_ == Nil) match {
+      case Some(_) => Nil
+      case None => (in map (_.head)) :: zipMultipleWithDifferentSize(in map (_.tail))
+    }
   }
 
 }
