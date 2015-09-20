@@ -1,4 +1,4 @@
-name := "Practice Scala"
+name := "Practice Scala -- Sample Solution"
 
 version := "2.0"
 

@@ -1,4 +1,4 @@
-package org.scalalabs.basic.lab02
+  package org.scalalabs.basic.lab02
 /**
  * This Lab contains exercises where the usage of
  * higher order collection methods can be rehearsed.
@@ -32,9 +32,19 @@ object CollectionExercise01 {
    * Case 3: so it is okay if you want to just give up
    *
    */
-  def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
-  }
+  val in1 = "ejp mysljylc kd kxveddknmc re jsicpdrysi"
+  val out1 = "our language is impossible to understand"
+  val in2 = "rbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcd"
+  val out2 = "there are twenty six factorial possibilities"
+  val in3 = "de kr kd eoya kw aej tysr re ujdr lkgc jv"
+  val out3 = "so it is okay if you want to just give up"
+    
+  def makeMap(input: String, output: String) = (input zip output).toMap
+  val initialTable = Map('q' → 'z', 'z' → 'q')
+  val table = initialTable ++ makeMap(in1, out1) ++ makeMap(in2, out2) ++ makeMap(in3, out3)
+
+  def googleCodeJamGooglerese(lines: String*): Seq[String] =  
+    lines map (_ map table)
 }
 /*========================================================== */
 
@@ -49,9 +59,8 @@ object CollectionExercise02 {
    * Rewrite the method groupAdultsPerAgeGroup in the ImperativeSample java class
    * using a functional approach.
    */
-  def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
-  }
+  def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = 
+    persons.filter(_.age >= 18).sortBy(_.name).groupBy(_.age / 10 * 10)
 }
 
 /*========================================================== */
@@ -65,7 +74,7 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
+    if (seq.size < 2) true else seq.sliding(2).forall(l ⇒ l(0) < l(1))
 
 }
 /*========================================================== */
@@ -76,6 +85,8 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    val words = lines.flatMap(_.split("\\W+"))
+    val wordLengths = words.map(_.length)
+    wordLengths.max
   }
 }
