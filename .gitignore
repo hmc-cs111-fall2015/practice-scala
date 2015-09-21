@@ -20,3 +20,6 @@ TODO.md
 .settings
 labs/.cache-main
 labs/.cache-tests
+
+.*.sw*
+.*.un~
