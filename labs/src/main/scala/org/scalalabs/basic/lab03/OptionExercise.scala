@@ -25,9 +25,29 @@ object OptionExercise01 {
    * - does not exist: 					"not existing"
    */
   def roomState(rooms: Map[Int, Option[String]], room: Int): String = {
-    error("Fix me")
+    rooms.get(room) map stateString getOrElse "not existing"
   }
-
+  
+  def stateString(opt: Option[String]):String = {
+    opt map (state => if (state == "locked") "not available" else state) getOrElse "empty"
+  }
+  
+  /* Why is the above considered more idiomatic than
+   
+   def roomState(rooms: Map[Int, Option[String]], room: Int): String = {
+     rooms.get(room) match {
+     case None => "not existing"
+     case Some opt =>
+       opt match {
+       case None => "empty"
+       case Some("locked") => "not available"
+       case Some(s) => s
+       }
+     }
+   }
+   
+   With pattern matching, neither this case nor the next one needs helper functions
+   */
 }
 
 object OptionExercise02 {
@@ -37,6 +57,11 @@ object OptionExercise02 {
    * to convert a possible numeric String (e.g. Some("12")) to an integer
    */
   def totalPeopleInRooms(rooms: Map[Int, Option[String]]): Int = {
-    error("Fix me")
+    val counts = rooms.values map peopleInRoom
+    counts.sum
+  }
+  
+  def peopleInRoom(opt: Option[String]): Int = {
+  opt map (s => if (s == "locked") 0 else s.toInt) getOrElse 0
   }
 }
