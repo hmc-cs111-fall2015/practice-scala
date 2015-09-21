@@ -41,7 +41,12 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1), List(2), List(3), List(1,1)
    */
   def groupConsecutive[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    // Note: this doesn't work 
+    in match {
+      case Nil => Nil;
+      case first::Nil => List(first::Nil);
+      case first::(second::rest) => if (first == second) groupConsecutive(second::rest) else List(first)::groupConsecutive(second::rest)  
+    }
   }
 
   /**
@@ -73,7 +78,12 @@ object RecursionPatternMatchingExercise {
    * List(List(1,2,3), List('A, 'B, 'C), List('a, 'b, 'c)) -> List(List(1, 'A, 'a), List(2, 'B, 'b), List(3, 'C, 'c))
    */
   def zipMultiple(in: List[List[_]]): List[List[_]] = {
-    error("fix me")
+    // Note: this doesn't work
+      in match {
+        case Nil => Nil
+        case first::Nil => first::Nil
+        case first::second::rest => zipMultiple(first.zip(second)::rest)
+      }
   }
 
   /**
