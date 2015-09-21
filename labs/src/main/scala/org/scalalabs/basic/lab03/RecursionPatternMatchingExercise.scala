@@ -41,9 +41,7 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1), List(2), List(3), List(1,1)
    */
   def groupConsecutive[T](in: List[T]): List[List[T]] = {
-    in match {
-      
-    }
+    error("fix me")
   }
 
   /**

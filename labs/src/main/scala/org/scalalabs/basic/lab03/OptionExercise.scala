@@ -27,8 +27,8 @@ object OptionExercise01 {
   def roomState(rooms: Map[Int, Option[String]], room: Int): String = {
     val myRoom: Option[Option[String]] = rooms.get(room)
     myRoom match {
+      case Some(Some("locked")) => "not available"
       case Some(Some(n)) => n
-      case Some(Some("locked")) => "locked"
       case Some(None) => "empty"
       case None => "not existing"
     }
@@ -43,6 +43,15 @@ object OptionExercise02 {
    * to convert a possible numeric String (e.g. Some("12")) to an integer
    */
   def totalPeopleInRooms(rooms: Map[Int, Option[String]]): Int = {
-    error("Fix me")
+    rooms.keys.map { x => occupancy(x,rooms) }.reduce(_+_)
+  }
+  
+  def occupancy(room: Int, rooms: Map[Int, Option[String]]): Int = {
+    OptionExercise01.roomState(rooms, room) match {
+      case "not available" => 0
+      case "empty" => 0
+      case "not existing" => 0
+      case default => default.toInt
+    }
   }
 }
