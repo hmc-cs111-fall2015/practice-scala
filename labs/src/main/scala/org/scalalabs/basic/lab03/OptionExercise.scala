@@ -1,6 +1,7 @@
 package org.scalalabs.basic.lab03
 import scala.util.control._
 import sys._
+import scala.util.control.Exception._
 
 package object lab03 {
 
@@ -25,7 +26,10 @@ object OptionExercise01 {
    * - does not exist: 					"not existing"
    */
   def roomState(rooms: Map[Int, Option[String]], room: Int): String = {
-    error("Fix me")
+    rooms.get(room).getOrElse(Some("not existing")).getOrElse("empty") match {
+      case "locked" => "not available"
+      case x => x
+    }
   }
 
 }
@@ -37,6 +41,13 @@ object OptionExercise02 {
    * to convert a possible numeric String (e.g. Some("12")) to an integer
    */
   def totalPeopleInRooms(rooms: Map[Int, Option[String]]): Int = {
-    error("Fix me")
+    rooms.values.map(toCount(_)).reduce(_+_)
+  }
+  
+  def toCount(occupancy: Option[String]): Int = {
+    occupancy match {
+      case Some(s) => (catching(classOf[NumberFormatException]) opt s.toInt).getOrElse(0)
+      case None => 0
+    }
   }
 }
