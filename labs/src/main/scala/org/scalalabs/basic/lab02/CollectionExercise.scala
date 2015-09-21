@@ -33,8 +33,26 @@ object CollectionExercise01 {
    *
    */
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+    val l1 = "ejp mysljylc kd kxveddknmc re jsicpdrysirbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcdde kr kd eoya kw aej tysr re ujdr lkgc jva zoo"
+    val l2 = "our language is impossible to understandthere are twenty six factorial possibilitiesso it is okay if you want to just give upy qee"
+    var mapping = buildMap(l1.toList, l2.toList, Map[Char, Char]())
+    
+    var concat = Seq[String]()
+    
+    for(sent <- lines) {
+      var newline = sent.toList.map(x=>mapping(x)).mkString
+      concat :+ newline
+    }
+    concat
   }
+  
+  def buildMap(l1:List[Char], l2:List[Char], map:Map[Char, Char]): Map[Char, Char] =
+    {
+      if (l1 == List.empty[Char])
+        return map
+      else
+        return buildMap(l1.tail, l2.tail, map + (l1.head -> l2.head) )
+    }
 }
 /*========================================================== */
 
