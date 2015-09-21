@@ -48,12 +48,12 @@ class HelloWorldExerciseTest extends Specification {
   *   in the same source file
   * - An Object can be constructed using an apply method
   */
-  "Scala Companion Object" should {
-    "serve as factory" in {
-      val helloWorldInstance = HelloWorldClassAndObject("Hello")
-      "Hello" === helloWorldInstance.echo
-    }
-  }
+//  "Scala Companion Object" should {
+//    "serve as factory" in {
+//      val helloWorldInstance = HelloWorldClassAndObject("Hello")
+//      "Hello" === helloWorldInstance.echo
+//    }
+//  }
 
   /*==============================================================*/
   /*-------------------------- OPTIONAL --------------------------*/
@@ -69,10 +69,10 @@ class HelloWorldExerciseTest extends Specification {
   * - combine the methods in HelloTrait and WorldTrait to
   *   create a new message
   */
-  "Scala Traits" should {
-    "say hello" in {
-      "Hello World" === HelloWorldWithTraits.hello
-    }
-  }
+//  "Scala Traits" should {
+//    "say hello" in {
+//      "Hello World" === HelloWorldWithTraits.hello
+//    }
+//  }
 
 }

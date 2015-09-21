@@ -29,7 +29,11 @@ object RecursionPatternMatchingExercise {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease(seq: Seq[Int]): Boolean = {
-    error("fix me")
+    seq match{
+      case x :: y :: xs => ((if (x<y) true else false) & checkValuesIncrease(y::xs))
+      case x => true
+      case nil => true
+    }
   }
   
   /**
@@ -37,7 +41,12 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1), List(2), List(3), List(1,1)
    */
   def groupConsecutive[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    in match{
+      case x::_ => 
+        val (same, tail) = in.span(_==x)
+        same :: groupConsecutive(tail)
+      case Nil => Nil
+    }
   }
 
   /**
@@ -45,7 +54,13 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1,1,1), List(2), List(3)
    */
   def groupEquals[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    in match{
+      case x::_ => 
+        val (same, tail) = in.partition(_==x)
+        same :: groupConsecutive(tail)
+      case Nil => Nil
+    }
+    
   }
 
   /**
@@ -53,7 +68,11 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,2,3)
    */
   def compress[T](in: List[T]): List[T] = {
-    error("fix me")
+    in match{
+      case x::y::xs if (x==y) => compress(x::xs)
+      case x::y::xs => x::compress(y::xs)
+      case Nil => Nil
+    }
   }
   
   /**
@@ -61,7 +80,7 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List((4,1),(1,2),(1,3))
    */
   def amountEqualMembers[T](in: List[T]): List[(Int, T)] = {
-    error("fix me")
+    groupEquals(in).map((list: List[T]) => (list.size,list.head)))
   }
   
   /**
@@ -69,7 +88,7 @@ object RecursionPatternMatchingExercise {
    * List(List(1,2,3), List('A, 'B, 'C), List('a, 'b, 'c)) -> List(List(1, 'A, 'a), List(2, 'B, 'b), List(3, 'C, 'c))
    */
   def zipMultiple(in: List[List[_]]): List[List[_]] = {
-    error("fix me")
+    in.transpose
   }
 
   /**
@@ -77,7 +96,11 @@ object RecursionPatternMatchingExercise {
    * List(List(1), List('A, 'B, 'C), List('a, 'b)) -> List(List(1, 'A, 'a))
    */
   def zipMultipleWithDifferentSize(in: List[List[_]]): List[List[_]] = {
-    error("fix me")
+    val minimumSize = in.sortBy(_.length).head.length
+    def includeOnlySmaller(input: List[List[_]],maxlength: Int) = {
+      input.filter(_.length<=maxlength)
+    }
+    zipMultiple(includeOnlySmaller(in,minimumSize))
   }
 
 }
