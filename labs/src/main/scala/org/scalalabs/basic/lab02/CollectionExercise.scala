@@ -48,8 +48,7 @@ object CollectionExercise01 {
   }
   
   def translateString(str: String, dict: Map[Char,Char]): String = {
-    // If this didn't return the wrong type, we'd be golden! 
-    str.foreach{ x => dict.get(x) }: String
+    str.map{ x => dict.apply(x) }: String
   }
 }
 /*========================================================== */
