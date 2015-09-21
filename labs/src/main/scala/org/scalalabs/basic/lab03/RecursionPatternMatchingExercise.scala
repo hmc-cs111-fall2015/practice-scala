@@ -31,8 +31,7 @@ object RecursionPatternMatchingExercise {
   def checkValuesIncrease(seq: Seq[Int]): Boolean = {
     seq match{
       case x :: y :: xs => ((if (x<y) true else false) & checkValuesIncrease(y::xs))
-      case x => true
-      case nil => true
+      case _ => true
     }
   }
   
@@ -57,7 +56,7 @@ object RecursionPatternMatchingExercise {
     in match{
       case x::_ => 
         val (same, tail) = in.partition(_==x)
-        same :: groupConsecutive(tail)
+        same :: groupEquals(tail)
       case Nil => Nil
     }
     
@@ -70,7 +69,7 @@ object RecursionPatternMatchingExercise {
   def compress[T](in: List[T]): List[T] = {
     in match{
       case x::y::xs if (x==y) => compress(x::xs)
-      case x::y::xs => x::compress(y::xs)
+      case x::xs => x::compress(xs)
       case Nil => Nil
     }
   }
@@ -80,7 +79,7 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List((4,1),(1,2),(1,3))
    */
   def amountEqualMembers[T](in: List[T]): List[(Int, T)] = {
-    groupEquals(in).map((list: List[T]) => (list.size,list.head)))
+    groupEquals(in).map((list: List[T]) => (list.size,list.head))
   }
   
   /**
@@ -98,7 +97,7 @@ object RecursionPatternMatchingExercise {
   def zipMultipleWithDifferentSize(in: List[List[_]]): List[List[_]] = {
     val minimumSize = in.sortBy(_.length).head.length
     def includeOnlySmaller(input: List[List[_]],maxlength: Int) = {
-      input.filter(_.length<=maxlength)
+      input.map(_.slice(0,maxlength))
     }
     zipMultiple(includeOnlySmaller(in,minimumSize))
   }

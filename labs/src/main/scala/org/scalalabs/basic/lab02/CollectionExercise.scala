@@ -72,8 +72,7 @@ object CollectionExercise03 {
   def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean ={
       seq match{
       case x :: y :: xs => ((if (x<y) true else false) & checkValuesIncrease(y::xs))
-      case x => true
-      case nil => true
+      case _ => true
     }
   }
 

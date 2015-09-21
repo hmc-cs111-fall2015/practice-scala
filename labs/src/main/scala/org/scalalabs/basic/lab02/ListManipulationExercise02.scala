@@ -58,5 +58,6 @@ object ListManipulationExercise02 {
     val ageSorted = persons.sortBy(_.age)
     var (young,old) = ageSorted.partition(_.age<18)
     var (youngins,elders) = (young.sortBy(_.firstName),old.sortBy(_.firstName))
-    val res = youngins++elders
+    List(youngins.map(_.firstName),elders.map(_.firstName))
   }
+}
