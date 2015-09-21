@@ -12,5 +12,13 @@ trait DefaultCurrencyConverter extends CurrencyConverter {
 		(dollarCents.toDouble * conversionRate).toInt
 }
 
-object DefaultCurrencyConverter extends DefaultCurrencyConverter
- 
+object DefaultCurrencyConverter extends DefaultCurrencyConverter {
+  implicit def DollarToEuro(dollar: Dollar): Euro =
+    Euro.fromCents(this.toEuroCents(dollar.inCents))
+}
+
+class Dollar(val dollar: Int, val cents: Int) {
+
+  val inCents = dollar * 100 + cents
+
+}

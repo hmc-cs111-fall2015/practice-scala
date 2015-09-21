@@ -1,6 +1,8 @@
 package org.scalalabs.basic.lab01
 
 import java.lang.{ IllegalArgumentException => IAE }
+import org.scalalabs.basic.lab01.IntExtend._
+import org.scalalabs.basic.lab01.DefaultCurrencyConverter._
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
@@ -53,30 +55,27 @@ class OOExerciseTest extends Specification {
   }
   "OPTIONAL Exercise 3: Euro with Order trait" should {
     "be correctly orderable" in {
-      skipped("Uncomment and fix me")
-      //      val e1 = new Euro(1, 5)
-      //      val e2 = new Euro(4, 53)
-      //      val e3 = new Euro(8, 10)
-      //      e3 > e1 must beTrue
-      //      val list = List(e2, e1, e3)
-      //      list.sorted ==== List(e1, e2, e3)
+            val e1 = new Euro(1, 5)
+            val e2 = new Euro(4, 53)
+            val e3 = new Euro(8, 10)
+            e3 > e1 must beTrue
+            val list = List(e2, e1, e3)
+            list.sorted ==== List(e1, e2, e3)
     }
   }
-  
+
    "OPTIONAL Exercise 4: Implicit class" should {
     //implicit val defaultConverter = DefaultCurrencyConverter
      "add *(euro:Euro) (multiply) method to Int" in {
-      skipped("Uncomment and fix me")
-//      import Euro._
-//      val res = 3 * new Euro(2, 50)
-//      res.euro ==== 7
-//      res.cents ==== 50
+      import Euro._
+      val res = 3 * new Euro(2, 50)
+      res.euro ==== 7
+      res.cents ==== 50
     }
     "implicitly convert from euro to dollar" in {
-      skipped("Uncomment and fix me")
-//      val e: Euro = new Dollar(1, 5)
-//      e.euro ==== 1
-//      e.cents ==== 42
+      val e: Euro = new Dollar(1, 5)
+      e.euro ==== 1
+      e.cents ==== 42
     }
   }
   "OPTIONAL Exercise 5: Implicit parameter" should {
