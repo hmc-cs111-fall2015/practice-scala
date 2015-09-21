@@ -28,16 +28,22 @@ object RecursionPatternMatchingExercise {
    * checkValuesIncrease(Seq(1,2,3)) == true
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
-  def checkValuesIncrease(seq: Seq[Int]): Boolean = {
-    error("fix me")
-  }
+	def checkValuesIncrease(seq: Seq[Int]): Boolean = {
+			seq match {
+			case Nil => true
+			case a::Nil => true
+			case a::(b::rest) => if (a < b) checkValuesIncrease(b::rest) else false
+			}
+	}
   
   /**
    * Group Consecutive values
    * List(1,1,2,3,1,1) -> List(1,1), List(2), List(3), List(1,1)
    */
   def groupConsecutive[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    in match {
+      
+    }
   }
 
   /**

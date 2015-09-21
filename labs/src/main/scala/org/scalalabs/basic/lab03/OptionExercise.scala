@@ -25,7 +25,13 @@ object OptionExercise01 {
    * - does not exist: 					"not existing"
    */
   def roomState(rooms: Map[Int, Option[String]], room: Int): String = {
-    error("Fix me")
+    val myRoom: Option[Option[String]] = rooms.get(room)
+    myRoom match {
+      case Some(Some(n)) => n
+      case Some(Some("locked")) => "locked"
+      case Some(None) => "empty"
+      case None => "not existing"
+    }
   }
 
 }

@@ -70,7 +70,6 @@ object CollectionExercise03 {
     case a::Nil => true
     case a::(b::rest) => if (a < b) checkValuesIncrease(b::rest) else false
   } 
-
 }
 /*========================================================== */
 
