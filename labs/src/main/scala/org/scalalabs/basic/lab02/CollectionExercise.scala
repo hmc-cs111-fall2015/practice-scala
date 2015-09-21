@@ -65,7 +65,11 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
+    seq match {
+    case Nil => true
+    case a::Nil => true
+    case a::(b::rest) => if (a < b) checkValuesIncrease(b::rest) else false
+  } 
 
 }
 /*========================================================== */
