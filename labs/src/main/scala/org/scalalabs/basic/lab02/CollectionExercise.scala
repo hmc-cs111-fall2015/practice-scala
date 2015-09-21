@@ -33,7 +33,18 @@ object CollectionExercise01 {
    *
    */
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+    val dictionary = scala.collection.mutable.Map[Char, Char](' ' -> ' ')
+    val inputLines = "ejp mysljylc kd kxveddknmc re jsicpdrysi rbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcd de kr kd eoya kw aej tysr re ujdr lkgc jv"
+    val outputLines = "our language is impossible to understand there are twenty six factorial possibilities so it is okay if you want to just give up"
+    
+    for((input, output) <- inputLines.zip(outputLines)) {
+      dictionary.put(input, output)
+    }
+    var sequence: Seq[String] = Seq()
+    for (line <- lines) {
+      sequence :+ line.map((x: Char) => dictionary(x))
+    }
+    sequence
   }
 }
 /*========================================================== */
@@ -50,7 +61,14 @@ object CollectionExercise02 {
    * using a functional approach.
    */
   def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
+    var cutOff: Int = 10
+    var ageGroups = scala.collection.mutable.Map[Int, Seq[Person]]()
+    
+    while(cutOff < 100) {
+      ageGroups.put(cutOff, persons.filter(_.age < cutOff))
+      cutOff += 10
+    }
+    ageGroups.toMap
   }
 }
 
@@ -64,9 +82,16 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,3)) == true
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
-  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
-
+  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean = {
+    var preVal: Int = 0
+    for(val <- seq) {
+      if(val < preVal) {
+        false
+      }
+      preVal = val
+    }
+  true
+  }
 }
 /*========================================================== */
 
@@ -76,6 +101,14 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    var maxLength: Int = 0
+    for(line <- lines) {
+      for(string <- line.split(" ")) {
+        if(string.length > maxLength) {
+          maxLength = string.length
+        }
+      }
+    }
+    maxLength
   }
 }
