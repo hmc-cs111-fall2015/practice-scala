@@ -23,11 +23,11 @@ start coding.**
 Here's what to do:
 
 - Get things set up
-  - [ ] Review the [Assignment workflow](https://github.com/hmc-cs111-fall2015/hmc-cs111-fall2015.github.io/wiki/Assignment-HOWTO#connect-local), and follow it to get the materials for this lab.
-  - [ ] Read [Installing Scala](https://github.com/hmc-cs111-fall2015/hmc-cs111-fall2015.github.io/wiki/Installing-Scala), if you want to install Scala on your own machine.
+  - [x] Review the [Assignment workflow](https://github.com/hmc-cs111-fall2015/hmc-cs111-fall2015.github.io/wiki/Assignment-HOWTO#connect-local), and follow it to get the materials for this lab.
+  - [x] Read [Installing Scala](https://github.com/hmc-cs111-fall2015/hmc-cs111-fall2015.github.io/wiki/Installing-Scala), if you want to install Scala on your own machine.
 
 - Work on the assignment
-  - [ ] Read the lab instructions, hints, and tips, below.
+  - [x] Read the lab instructions, hints, and tips, below.
   - Do the following labs (it's probably best to do them in the following order)
      - [ ] Basic lab 1, `HelloWorldExercise`
      - [ ] Basic lab 1, `OOExercise`
