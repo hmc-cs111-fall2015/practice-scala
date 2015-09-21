@@ -44,13 +44,13 @@ object CollectionExercise01 {
     val list3 = string3.zip(string3Decoded)
     val list = list1.union(list2).union(list3)
     val myMap = list.toMap
-    // lines.map { x => translateString(x, myMap) }
-    null
+    lines.map { x => translateString(x, myMap) }
   }
   
-//  def translateString(str: String, dict: Map[Char,Char]): String = {
-//    str.foreach { x => dict.get(x) }: String
-//  }
+  def translateString(str: String, dict: Map[Char,Char]): String = {
+    // If this didn't return the wrong type, we'd be golden! 
+    str.foreach{ x => dict.get(x) }: String
+  }
 }
 /*========================================================== */
 
