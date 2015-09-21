@@ -29,8 +29,8 @@ Here's what to do:
 - Work on the assignment
   - [x] Read the lab instructions, hints, and tips, below.
   - Do the following labs (it's probably best to do them in the following order)
-     - [ ] Basic lab 1, `HelloWorldExercise`
-     - [ ] Basic lab 1, `OOExercise`
+     - [x] Basic lab 1, `HelloWorldExercise`
+     - [x] Basic lab 1, `OOExercise`
      - [ ] Basic lab 2, `ListManipulationExercise01`
      - [ ] Basic lab 2, `ListManipulationExercise02`
      - [ ] Basic lab 2, `CollectionExercise01`
