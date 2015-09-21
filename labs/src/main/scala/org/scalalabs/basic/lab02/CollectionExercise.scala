@@ -33,8 +33,25 @@ object CollectionExercise01 {
    *
    */
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+    val l1 = "ejp mysljylc kd kxveddknmc re jsicpdrysirbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcdde kr kd eoya kw aej tysr re ujdr lkgc jv"
+    val l2 = "our language is impossible to understandthere are twenty six factorial possibilitiesso it is okay if you want to just give up"
+    var mapping = buildMap(l1.toList, l2.toList, Map[Char, Char]())
+    var concat = Seq[String]()
+    
+    for(sent <- lines) {
+      val newline = sent.map(x=>mapping(x))
+      concat = concat :+ newline
+    }
+    concat
   }
+  
+  def buildMap(l1:List[Char], l2:List[Char], map:Map[Char, Char]): Map[Char, Char] =
+    {
+      if (l1 == List.empty[Char])
+        return map
+      else
+        return buildMap(l1.tail, l2.tail, map + (l1.head -> l2.head) )
+    }
 }
 /*========================================================== */
 
@@ -49,9 +66,7 @@ object CollectionExercise02 {
    * Rewrite the method groupAdultsPerAgeGroup in the ImperativeSample java class
    * using a functional approach.
    */
-  def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
-  }
+  def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = persons.filter(x=> x.age>=18).groupBy(x=>x.age/10*10)
 }
 
 /*========================================================== */
@@ -64,9 +79,12 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,3)) == true
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
-  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
-
+  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean = {
+   var result = true;
+   if (seq.size > 1)
+     seq.sliding(2).foreach(pair => result = result && pair(0) < pair(1))
+   result
+  }
 }
 /*========================================================== */
 
@@ -76,6 +94,6 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    lines.map(x => (x.split(" ").foldLeft(0)((x,(i:String)) => if (i.length() > x) i.length() else x))).max
   }
 }
