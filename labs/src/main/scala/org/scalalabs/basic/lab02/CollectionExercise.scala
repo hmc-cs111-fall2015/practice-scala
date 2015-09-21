@@ -32,8 +32,12 @@ object CollectionExercise01 {
    * Case 3: so it is okay if you want to just give up
    *
    */
+  // It's a lie. O doesn't actually map to e, it maps to k. Great.
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+    val code = "ejp mysljylc kd kxveddknmc re jsicpdrysirbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcdde kr kd eoya kw aej tysr re ujdr lkgc jva z"
+    val answer = "our language is impossible to understandthere are twenty six factorial possibilitiesso it is okay if you want to just give upy q"
+    val translator: Map[Char, Char] = (code zip answer).foldLeft(Map.empty[Char, Char])((m, p) => m + p)
+    lines map (_ map (translator(_)))
   }
 }
 /*========================================================== */
@@ -50,7 +54,7 @@ object CollectionExercise02 {
    * using a functional approach.
    */
   def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
+    persons filter (_.age >= 18) sortBy (_.name) groupBy (_.age/10*10)
   }
 }
 
@@ -64,9 +68,13 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,3)) == true
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
-  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
-
+  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean = {
+    seq match {
+      case Seq() => true
+      case Seq(_) => true
+      case _ => seq sliding 2 forall {case Seq(a, b) => a < b}
+    }
+  }
 }
 /*========================================================== */
 
@@ -76,6 +84,8 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    error("Couldn't")
+    // For some reason, I can't use String.split. It is somehow ambiguous with
+    // another version of split that also takes in an integer.
   }
 }

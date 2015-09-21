@@ -11,7 +11,7 @@ object ListManipulationExercise02 {
    * As usual, various ways exist: pattern matching, folding, ...
    */
   def maxElementInList(l: List[Int]): Int = {
-    error("fix me")
+    l.max
   }
 
   /**
@@ -19,7 +19,7 @@ object ListManipulationExercise02 {
    * of the two list
    */
   def sumOfTwo(l1: List[Int], l2: List[Int]): List[Int] = {
-    error("fix me")
+    l1.zipAll(l2,0,0) map {case (a, b) => a + b}
   }
 
   /**
@@ -27,7 +27,7 @@ object ListManipulationExercise02 {
    * method above
    */
   def sumOfMany(l: List[Int]*): List[Int] = {
-    error("fix me")
+    l reduce sumOfTwo
   }
 
   case class Person(age: Int, firstName: String, lastName: String)
@@ -39,6 +39,8 @@ object ListManipulationExercise02 {
    * in a one-liner.
    */
   def separateTheYoungFromTheOld(persons: List[Person]): List[List[String]] = {
+    
+    
     var youngins: ListBuffer[Person] = new ListBuffer[Person]()
     var elders: ListBuffer[Person] = new ListBuffer[Person]()
     var validYoungNames: ListBuffer[String] = new ListBuffer[String]()

@@ -28,8 +28,16 @@ object RecursionPatternMatchingExercise {
    * checkValuesIncrease(Seq(1,2,3)) == true
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
+  
+  
+  // Essentially all of these are much nicer to implement using higher-order functions
+  // than by manual recursion. :(
+  
   def checkValuesIncrease(seq: Seq[Int]): Boolean = {
-    error("fix me")
+    seq match {
+      case a +: (rest@Seq(b, _*)) => (a < b) && checkValuesIncrease(rest)
+      case _ => true
+    }
   }
   
   /**
@@ -37,15 +45,36 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1), List(2), List(3), List(1,1)
    */
   def groupConsecutive[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    in match {
+      case List() => List()
+      case a :: rest =>
+        groupConsecutive(rest) match {
+          case (b::rrest) :: groups if b == a => (a::b::rrest) :: groups
+          case groups => List(a) :: groups
+        }
+    }
   }
 
+  
   /**
    * Group Equal values
    * List(1,1,2,3,1,1) -> List(1,1,1,1), List(2), List(3)
    */
   def groupEquals[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    // groupEquals never produces empty groups
+    groupEqualsHelp(in).values.toList sortBy {case a::_ => in indexOf a}
+  }
+  
+  def groupEqualsHelp[T](in: List[T]): Map[T, List[T]] = {
+    in match {
+      case List() => Map()
+      case a::rest =>
+        val restMap = groupEqualsHelp(rest)
+        restMap get a match {
+          case None => restMap + (a -> List(a))
+          case Some(as) => restMap + (a -> (a::as))
+        }
+    }
   }
 
   /**
@@ -53,7 +82,15 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,2,3)
    */
   def compress[T](in: List[T]): List[T] = {
-    error("fix me")
+    in match {
+      case l@List() => l
+      case l@List(a) => l
+      case a :: rest => 
+        if (a == rest.head)
+          compress(rest)
+        else
+          a :: compress(rest)
+    }
   }
   
   /**
@@ -61,7 +98,7 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List((4,1),(1,2),(1,3))
    */
   def amountEqualMembers[T](in: List[T]): List[(Int, T)] = {
-    error("fix me")
+    groupEquals(in) map ((L) => (L.length, L.head))
   }
   
   /**
@@ -71,6 +108,8 @@ object RecursionPatternMatchingExercise {
   def zipMultiple(in: List[List[_]]): List[List[_]] = {
     error("fix me")
   }
+  
+  
 
   /**
    * Zip multiple lists with different sizes

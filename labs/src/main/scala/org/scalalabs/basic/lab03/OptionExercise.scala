@@ -25,7 +25,14 @@ object OptionExercise01 {
    * - does not exist: 					"not existing"
    */
   def roomState(rooms: Map[Int, Option[String]], room: Int): String = {
-    error("Fix me")
+    if (rooms contains room)
+      rooms(room) match {
+        case None => "empty"
+        case Some("locked") => "not available"
+        case Some(n) => n
+      }
+    else
+      "not existing"
   }
 
 }
@@ -37,6 +44,10 @@ object OptionExercise02 {
    * to convert a possible numeric String (e.g. Some("12")) to an integer
    */
   def totalPeopleInRooms(rooms: Map[Int, Option[String]]): Int = {
-    error("Fix me")
+    rooms.values map {
+      case None => 0
+      case Some("locked") => 0
+      case Some(n) => n.toInt
+    } sum
   }
 }
