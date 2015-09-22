@@ -41,11 +41,9 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1), List(2), List(3), List(1,1)
    */
   def groupConsecutive[T](in: List[T]): List[List[T]] = {
-    // Note: this doesn't work 
     in match {
-      case Nil => Nil;
-      case first::Nil => List(first::Nil);
-      case first::(second::rest) => if (first == second) groupConsecutive(second::rest) else List(first)::groupConsecutive(second::rest)  
+      case Nil => Nil
+      case first::rest => in.span { x => x.equals(first) }._1 :: groupConsecutive(in.span { x => x.equals(first) }._2)
     }
   }
 
@@ -54,7 +52,10 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1,1,1), List(2), List(3)
    */
   def groupEquals[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    in match {
+      case Nil => Nil
+      case first::rest => in.filter { x => x.equals(first) } :: groupEquals(rest.filterNot { x => x.equals(first) })
+    }
   }
 
   /**
@@ -62,7 +63,7 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,2,3)
    */
   def compress[T](in: List[T]): List[T] = {
-    error("fix me")
+    in.distinct
   }
   
   /**
@@ -70,7 +71,10 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List((4,1),(1,2),(1,3))
    */
   def amountEqualMembers[T](in: List[T]): List[(Int, T)] = {
-    error("fix me")
+      in match {
+      case Nil => Nil
+      case first::rest =>  (in.filter { x => x.equals(first) }.count { x => true }, first) :: amountEqualMembers(rest.filterNot { x => x.equals(first)})
+    }
   }
   
   /**
@@ -78,12 +82,8 @@ object RecursionPatternMatchingExercise {
    * List(List(1,2,3), List('A, 'B, 'C), List('a, 'b, 'c)) -> List(List(1, 'A, 'a), List(2, 'B, 'b), List(3, 'C, 'c))
    */
   def zipMultiple(in: List[List[_]]): List[List[_]] = {
-    // Note: this doesn't work
-      in match {
-        case Nil => Nil
-        case first::Nil => first::Nil
-        case first::second::rest => zipMultiple(first.zip(second)::rest)
-      }
+    // Credit: Robin Pollak for suggesting this solution
+    in.transpose
   }
 
   /**
