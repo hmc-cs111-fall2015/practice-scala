@@ -23,13 +23,11 @@ object PatternMatchingExercise {
    *************************************************************************/
   def describeLanguage(s: String): String = {
     s match{
-      case "Java" => "OOP"
-      case "Smalltalk" => "OOP"
-      case "Clojure" => "Functional"
-      case "Haskell" => "Functional"
+      case ("Java" | "Smalltalk") => "OOP"
+      case ("Clojure" | "Haskell") => "OOP"
       case "Scala" => "Hybrid"
       case "C" => "Procedural"
-      case "Oz" => "Unknown" 
+      case "_" => "Unknown" 
     }
   }
 
