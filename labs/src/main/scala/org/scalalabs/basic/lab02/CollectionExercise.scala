@@ -33,18 +33,11 @@ object CollectionExercise01 {
    *
    */
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    val dictionary = scala.collection.mutable.Map[Char, Char](' ' -> ' ')
-    val inputLines = "ejp mysljylc kd kxveddknmc re jsicpdrysi rbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcd de kr kd eoya kw aej tysr re ujdr lkgc jv"
-    val outputLines = "our language is impossible to understand there are twenty six factorial possibilities so it is okay if you want to just give up"
+    val inputLines = "ejp mysljylc kd kxveddknmc re jsicpdrysirbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcdde kr kd eoya kw aej tysr re ujdr lkgc jv"
+    val outputLines = "our language is impossible to understandthere are twenty six factorial possibilitiesso it is okay if you want to just give up"
+    val dictionary = inputLines zip outputLines toMap
     
-    for((input, output) <- inputLines.zip(outputLines)) {
-      dictionary.put(input, output)
-    }
-    var sequence: Seq[String] = Seq()
-    for (line <- lines) {
-      sequence :+ line.map((x: Char) => dictionary(x))
-    }
-    sequence
+    lines.map(_.map(dictionary.get(_).get))
   }
 }
 /*========================================================== */
@@ -61,14 +54,7 @@ object CollectionExercise02 {
    * using a functional approach.
    */
   def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    var cutOff: Int = 10
-    var ageGroups = scala.collection.mutable.Map[Int, Seq[Person]]()
-    
-    while(cutOff < 100) {
-      ageGroups.put(cutOff, persons.filter(_.age < cutOff))
-      cutOff += 10
-    }
-    ageGroups.toMap
+    persons.filter(_.age > 18).groupBy(_.age/10 * 10).mapValues(_.sortBy(_.name))
   }
 }
 
@@ -82,15 +68,9 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,3)) == true
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
-  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean = {
-    var preVal: Int = 0
-    for(val <- seq) {
-      if(val < preVal) {
-        false
-      }
-      preVal = val
-    }
-  true
+  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean = seq match {
+    case Nil => true
+    case x :: y :: rest => x < y && checkValuesIncrease(y :: rest)
   }
 }
 /*========================================================== */
@@ -101,14 +81,6 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    var maxLength: Int = 0
-    for(line <- lines) {
-      for(string <- line.split(" ")) {
-        if(string.length > maxLength) {
-          maxLength = string.length
-        }
-      }
-    }
-    maxLength
+    lines.map(_.split(" ")).flatten.map(_.length()).max
   }
 }

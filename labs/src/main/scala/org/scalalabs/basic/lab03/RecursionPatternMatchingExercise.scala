@@ -30,8 +30,8 @@ object RecursionPatternMatchingExercise {
    */
   def checkValuesIncrease(seq: Seq[Int]): Boolean = seq match{
     case Nil => true
-    case _ => true
-    case left :: right :: rest => left > right && checkValuesIncrease(rest)
+    case _ :: Nil => true
+    case left :: right :: rest => left < right && checkValuesIncrease(right :: rest)
     
   }
   
@@ -79,7 +79,7 @@ object RecursionPatternMatchingExercise {
   def amountEqualMembers[T](in: List[T]): List[(Int, T)] = in match {
     case Nil => Nil
     case value :: junk => {
-      val (currentValues, rest) = in.span(_ == value)
+      val (currentValues, rest) = in.partition(_ == value)
       val numVal = currentValues.length
       (numVal, value) :: amountEqualMembers(rest)
     }
@@ -90,15 +90,19 @@ object RecursionPatternMatchingExercise {
    * List(List(1,2,3), List('A, 'B, 'C), List('a, 'b, 'c)) -> List(List(1, 'A, 'a), List(2, 'B, 'b), List(3, 'C, 'c))
    */
   def zipMultiple(in: List[List[_]]): List[List[_]] = {
-    in.map(_.head) :: zipMultiple(in.map(_.tail))
+    if(!in.isEmpty && !in.forall(_.isEmpty)) {
+      in.map(_.head) :: zipMultiple(in.map(_.tail))
+    }
+    else { Nil }
   }
 
   /**
    * Zip multiple lists with different sizes
    * List(List(1), List('A, 'B, 'C), List('a, 'b)) -> List(List(1, 'A, 'a))
    */
-  def zipMultipleWithDifferentSize(in: List[List[_]]): List[List[_]] = {
-    in.map(_.head) :: zipMultiple(in.map(_.tail))
+  def zipMultipleWithDifferentSize(in: List[List[_]]): List[List[_]] = in match {
+    case Nil => Nil
+    case left :: Nil => left.map(List(_))
+    case left :: rest => left.zip(zipMultipleWithDifferentSize(rest)).map{ case (a, b) => a :: b}
   }
-
 }
