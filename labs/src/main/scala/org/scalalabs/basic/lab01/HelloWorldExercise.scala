@@ -45,7 +45,7 @@ object HelloWorld {
    * More on method declarations can be found here:
    * http://programming-scala.labs.oreilly.com/ch02.html#MethodDeclarationsAndDefinitions
    */
-	def echo(text: String): String = "Echo"
+	def echo(text: String): String = text
 }
 
 
@@ -99,7 +99,7 @@ object HelloWorldWithTraits extends HelloTrait with WorldTrait {
  * - combine the 'helloMethod' of HelloTrait and the 'worldMethod' of WorldTrait to create a new message
  * - just replacing the FixMe string would of course be cheating :)
  */
-	def hello:String = helloMethod + ' ' + worldMethod
+	def hello:String = s"$helloMethod $worldMethod"
 }
 
 trait HelloTrait {
