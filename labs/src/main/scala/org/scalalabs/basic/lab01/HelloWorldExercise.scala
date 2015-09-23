@@ -79,7 +79,7 @@ object HelloWorld {
 object HelloWorldClassAndObject {
 	def apply(initialText:String):HelloWorldClassAndObject = {
 		new HelloWorldClassAndObject {
-			val text="initialText"
+			val text=initialText
 		}
 	}
 }
