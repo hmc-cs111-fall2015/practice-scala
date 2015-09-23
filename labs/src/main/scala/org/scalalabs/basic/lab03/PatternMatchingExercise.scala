@@ -57,7 +57,7 @@ object PatternMatchingExercise {
       case x:Int if (x>0) => "A positive integer"
       case p:Person => "A person with name: " + p.name
       case s:Seq[_] if s.length>10=> "Seq with more than 10 elements"
-      case s:Seq[_] if s.length>2=> "first: " + s(0) + ", second: " + s(1) + ", rest: " + List(s(2),s(3))  
+      case s:Seq[_] if s.length>2=> "first: " + s(0) + ", second: " + s(1) + ", rest: " + s.slice(2,s.length)  
       case null => "A null value"
       case _ => "Some Scala class"
     }
