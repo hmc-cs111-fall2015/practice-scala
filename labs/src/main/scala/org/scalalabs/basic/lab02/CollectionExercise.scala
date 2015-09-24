@@ -7,11 +7,12 @@ import sys._
 
 object CollectionExercise01 {
 
+  // NOTE: The following documentation was changed to reflect the correct direction of the mapping
   /**
    * Taken from: <a href="http://code.google.com/codejam/contest/1460488/dashboard">Problem A. Speaking in Tongues</a>
    *
    * Problem
-   * The aim of this task is to translate a language into a new language called Googlerese.
+   * The aim of this task is to translate a new language called Googlerese back into English.
    * To translate we take any message and replace each English letter with another English letter.
    * This mapping is one-to-one and onto, which means that the same input letter always gets replaced
    * with the same output letter, and different input letters always get replaced with different output letters.
@@ -33,7 +34,39 @@ object CollectionExercise01 {
    *
    */
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+    // To simplify we assume that all letters are lowercase (this is the case in the original problem)
+    // The cipher is as follows, in cycle notation:
+    // (a y) (b h x m l g v p r t w f c e o k i d s n) (j u) (q z)
+    val cipher = Map(
+        'a' → 'y',
+        'b' → 'h',
+        'c' → 'e',
+        'd' → 's',
+        'e' → 'o',
+        'f' → 'c',
+        'g' → 'v',
+        'h' → 'x',
+        'i' → 'd',
+        'j' → 'u',
+        'k' → 'i',
+        'l' → 'g',
+        'm' → 'l',
+        'n' → 'b',
+        'o' → 'k',
+        'p' → 'r',
+        'q' → 'z',
+        'r' → 't',
+        's' → 'n',
+        't' → 'w',
+        'u' → 'j',
+        'v' → 'p',
+        'w' → 'f',
+        'x' → 'm',
+        'y' → 'a',
+        'z' → 'q',
+        ' ' → ' '
+    )
+    lines map (_ map cipher)
   }
 }
 /*========================================================== */
@@ -50,7 +83,8 @@ object CollectionExercise02 {
    * using a functional approach.
    */
   def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
+    // Functional languages still have let…in, so val is part of a functional approach
+    (persons filter (_.age >= 18)).sortBy(_.age).groupBy(_.age / 10 * 10)
   }
 }
 
@@ -65,8 +99,11 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
-
+    seq match {
+      case Nil => true
+      case x::Nil => true
+      case x::y::rest => (x < y) && checkValuesIncrease(y::rest)
+    }
 }
 /*========================================================== */
 
@@ -76,6 +113,6 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    lines.map(_.split(" ").map(_.length).max).max
   }
 }
