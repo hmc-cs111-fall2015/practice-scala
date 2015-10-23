@@ -33,7 +33,11 @@ object CollectionExercise01 {
    *
    */
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+    val inputLines = "ejp mysljylc kd kxveddknmc re jsicpdrysirbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcdde kr kd eoya kw aej tysr re ujdr lkgc jv"
+    val outputLines = "our language is impossible to understandthere are twenty six factorial possibilitiesso it is okay if you want to just give up"
+    val dictionary = inputLines zip outputLines toMap
+    
+    lines.map(_.map(dictionary.get(_).get))
   }
 }
 /*========================================================== */
@@ -50,7 +54,7 @@ object CollectionExercise02 {
    * using a functional approach.
    */
   def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
+    persons.filter(_.age > 18).groupBy(_.age/10 * 10).mapValues(_.sortBy(_.name))
   }
 }
 
@@ -64,9 +68,10 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,3)) == true
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
-  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
-
+  def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean = seq match {
+    case Nil => true
+    case x :: y :: rest => x < y && checkValuesIncrease(y :: rest)
+  }
 }
 /*========================================================== */
 
@@ -76,6 +81,6 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    lines.map(_.split(" ")).flatten.map(_.length()).max
   }
 }
